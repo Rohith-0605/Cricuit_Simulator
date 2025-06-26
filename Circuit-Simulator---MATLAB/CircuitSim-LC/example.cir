@@ -1,0 +1,4 @@
+Vin 1 0 Symbolic
+R1 1 2 1
+R2 2 0 1
+L1 2 0 1
