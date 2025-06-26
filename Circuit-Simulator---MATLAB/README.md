@@ -2,16 +2,18 @@
 
 This circuit simulator reads a text input file representing the circuit and determines the node voltages using the Modified Node Analysis algorithm.
 
-This circuit simulator works for any circuit which consist of only independent voltage sources, independent current sources and resistors. 
+This circuit simulator works for any circuit which consist of only independent voltage sources, independent current sources and passive elements such as Resistors, Capacitors, Inductors. 
 
 Text input file must include a net list of the circuit. Creating netlist is visualized by a image. Check "Netlist Example.PNG" file and also "Netlist Example.txt" file at Circuit Simulator directory. 
 
 
 Modified Node Analysis (MNA) algorithm:
 
-MNA applied to a circuit with only passive elements (resistors) and independent current and voltage
+MNA applied to a circuit with only passive elements and independent current and voltage
 sources results in a matrix equation of the form:
 A ∙ x = z
+
+and based on the netlist example let's suppose we have
 
 For a circuit with n nodes and m independent voltage sources:
 • The A matrix, stated above:
@@ -37,6 +39,6 @@ The z matrix:
   The unknown quantities can be obtained by solving the linear system of equations A ∙ x = z .
 
 REFERENCES:
-1. 2019,  EE 241 Computer Tools for Electrical Engineers, Course, Boğaziçi University.
+1. EE 204 Circuit theory Course, IIT GUWAHATI.
 2. http://www.swarthmore.edu/NatSci/echeeve1/Ref/mna/MNA3.html
 3. http://www.swarthmore.edu/NatSci/echeeve1/Ref/mna/MNA6.html
