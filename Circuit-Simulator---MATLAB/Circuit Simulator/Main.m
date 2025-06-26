@@ -1,28 +1,24 @@
-%Next function will get data
+syms s t
+
+% Main script
 inputCell = getInput();
 
-%n is the number of nodes, found by the next line
 n = max(inputCell{3});
+m = sum(count(inputCell{1}, 'V'));
 
-% m is the number of independent voltage sources, found by counting 'V's
-m = sum(count(inputCell{1},'V')); 
-
-%This function will create G matrix
-G = GProducer(inputCell);
-
-%This function will create B matrix
-B = BProducer(inputCell);
-
-%C matrix is transpose of B
+G = GProducer(inputCell);    % Symbolic G matrix (R, C, L handled)
+B = BProducer(inputCell);    % Voltage source incidence matrix
 C = B';
-
-%D is mxm zero matrix
 D = zeros(m);
 
-%Ax=z, next functions will create A and z matrices
-A = [G,B;C,D];
+A = [G, B; C, D];
 z = zProducer(inputCell);
 
-% x is a vector that shows node voltages respectively from 1 to n
-x = inv(A)*z;
+x = simplify(A \ z);         % Solve in Laplace domain
+disp('Voltages and Currents in Laplace Domain (s-domain):');
+disp(x);
 
+% Convert voltages to time domain using inverse Laplace
+x_time = ilaplace(x, s, t);
+disp('Voltages and Currents in Time Domain (t-domain):');
+disp(x_time);
